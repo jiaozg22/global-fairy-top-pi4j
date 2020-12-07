@@ -8,6 +8,11 @@ public class GlobalFairyTopPi4jApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GlobalFairyTopPi4jApplication.class, args);
+        //系统启动以后，默认往context里放置一个
+
+//        SpringUtils.initContext(context);
+
+
     }
 
 }
