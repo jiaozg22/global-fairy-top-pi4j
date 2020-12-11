@@ -9,21 +9,25 @@ import com.pi4j.io.gpio.PinState;
  * @date 2020/12/5 0:05
  */
 public class CathodeModule {
-    private MotorDriver motorDriver = null;
+    private static TB6600DriverLinkPi link = null;
+
+    private MotorDriverDefConf motorDriverDefConf = null;
+
     private CathodeModule(){};//必须传参
-    public CathodeModule(MotorDriver md){
-        if(md != null){
-            motorDriver = md;
+
+    public CathodeModule(TB6600DriverLinkPi link){
+        if(this.link != null){
+            this.link = link;
         }else{
-            motorDriver = new MotorDriver();
+            this.link = new TB6600DriverLinkPi();
         }
 
+        this.initalMotorDriver();
     }
     public boolean initalMotorDriver(){
-        motorDriver.IN_DIR_SUB_DEFAULT = PinState.LOW;
-        motorDriver.IN_ENA_SUB_DEFAULT = PinState.LOW;
-        motorDriver.IN_PUL_SUB_DEFAULT = PinState.LOW;
-
+        motorDriverDefConf.IN_DIR_SUB_DEFAULT = PinState.LOW;
+        motorDriverDefConf.IN_ENA_SUB_DEFAULT = PinState.LOW;
+        motorDriverDefConf.IN_PUL_SUB_DEFAULT = PinState.LOW;
         return true;
     }
 

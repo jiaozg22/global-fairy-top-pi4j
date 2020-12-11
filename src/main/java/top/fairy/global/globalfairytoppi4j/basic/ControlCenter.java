@@ -6,7 +6,7 @@ package top.fairy.global.globalfairytoppi4j.basic;
  * @description 控制中心，pi4b,8g
  * @date 2020/12/5 16:22
  */
-public class ControlCenter {
+public class ControlCenter implements Pi {
     //控制中心名字
     private static final String name = "树莓派";
     //控制中心型号
