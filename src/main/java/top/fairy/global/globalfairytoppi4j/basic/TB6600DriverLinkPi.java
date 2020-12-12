@@ -1,6 +1,5 @@
 package top.fairy.global.globalfairytoppi4j.basic;
 
-import com.pi4j.io.gpio.RaspiPin;
 
 /**
  * @author jiao_zg22
@@ -9,10 +8,11 @@ import com.pi4j.io.gpio.RaspiPin;
  * @date 2020/12/7 20:07
  */
 public class TB6600DriverLinkPi implements LinkStrategy {
-    public Pi pi = null;//树莓派
-    public Chip chip = null;//电机
 
-    private void TB6600DriverLinkPi(){}
+    public MotorDriver driver_AL_BR = new MotorDriver();//左前，右后控制驱动
+    public MotorDriver driver_AR_BL = new MotorDriver();//右前，左后控制驱动
+
+    public void TB6600DriverLinkPi(){}
 
     /**
      *
@@ -20,39 +20,14 @@ public class TB6600DriverLinkPi implements LinkStrategy {
      * @author: jiao_zg22
      * @time: 2020/12/8 0:02
      */
-    private void TB6600DriverLinkPi(Pi pi3b,MotorDriver tb6600) throws Exception {
-        if(pi3b == null || tb6600 == null){
+    public void TB6600DriverLinkPi(MotorDriver al_br,MotorDriver ar_bl) throws Exception {
+        if(al_br == null || ar_bl == null){
             throw new Exception("连接的芯片不能为空");
         }
-        pi = pi3b;
-        chip = tb6600;
+
+        driver_AL_BR = al_br;
+        driver_AR_BL = ar_bl;
     }
-
-    //输出
-    //A+引脚初始值
-    public RaspiPin OUT_A_PLUS = null;
-    //A-引脚初始值
-    public RaspiPin OUT_A_SUB = null;
-    //B+引脚初始值
-    public RaspiPin OUT_B_PLUS = null;
-    //B-引脚初始值
-    public RaspiPin OUT_B_SUB = null;
-
-    //输入
-    //使能+
-    public RaspiPin IN_ENA_PLUS = null;
-    //使能-
-    public RaspiPin IN_ENA_SUB = null;
-
-    //控制方向+
-    public RaspiPin IN_DIR_PLUS = null;
-    //控制方向-
-    public RaspiPin IN_DIR_SUB = null;
-
-    //脉冲控制速度+
-    public RaspiPin IN_PUL_PLUS = null;
-    //脉冲控制速度-
-    public RaspiPin IN_PUL_SUB = null;
 
 
     @Override
@@ -62,6 +37,14 @@ public class TB6600DriverLinkPi implements LinkStrategy {
 
     @Override
     public boolean link() {
+        driver_AL_BR.IN_ENA_PLUS = ControlCenter.MS42_AL_ENA_PLUS;
+        driver_AL_BR.IN_DIR_PLUS = ControlCenter.MS42_AL_DIR_PLUS;
+        driver_AL_BR.IN_PUL_PLUS = ControlCenter.MS42_AL_PUL_PLUS;
+
+        driver_AR_BL.IN_ENA_PLUS = ControlCenter.MS42_AR_ENA_PLUS;
+        driver_AR_BL.IN_DIR_PLUS = ControlCenter.MS42_AR_DIR_PLUS;
+        driver_AR_BL.IN_PUL_PLUS = ControlCenter.MS42_AR_PUL_PLUS;
+
         //判断策略
         return false;
     }

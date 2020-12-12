@@ -2,6 +2,7 @@ package top.fairy.global.globalfairytoppi4j.action;
 
 import com.pi4j.io.gpio.*;
 import com.pi4j.util.CommandArgumentParser;
+import com.pi4j.util.ConsoleColor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import top.fairy.global.globalfairytoppi4j.basic.ControlCenter;
 import top.fairy.global.globalfairytoppi4j.basic.MoveTypeEnum;
 import top.fairy.global.globalfairytoppi4j.utils.GpioUtil;
 
@@ -28,66 +30,33 @@ public class DriverControllor {
     @RequestMapping(value = "/startPi", method = RequestMethod.GET)
     String getUserByGet(@RequestParam(value = "userName") String userName) {
         logger.info("startPi");
-        GpioController gpioController = GpioUtil.getGpioController();
-
-        return "  " + gpioController;
+        String result= "";
+        PinState MS42_AL_DIR_PLUS_VALUE = ControlCenter.MS42_AL_DIR_PLUS.getState();
+        if(MS42_AL_DIR_PLUS_VALUE == PinState.HIGH){
+            result = "启动树莓派成功";
+        }
+        return result;
     }
 
     //这里使用@RequestMapping注解表示该方法对应的二级上下文路径
     @RequestMapping(value = "/{MoveTypeEnum.forward.getOptKey()}" , method = RequestMethod.GET)
-    String getUserByGet(@RequestParam(value = "speed") int speed) {
+    String moveType(@RequestParam(value = "speed") int speed) {
         logger.info(MoveTypeEnum.forward.getOptName(),"速度为：{}",speed);
-        GpioController gpioController = GpioUtil.getGpioController();
+        ControlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
+        ControlCenter.MS42_AL_DIR_PLUS.setState(PinState.HIGH);
 
-        return "  " + gpioController;
+        ControlCenter.MS42_AR_PUL_PLUS.setPwmRange(speed);
+        return "运动...";
     }
 
 
+    //这里使用@RequestMapping注解表示该方法对应的二级上下文路径
+    @RequestMapping(value = "/stop" , method = RequestMethod.GET)
+    String stop(@RequestParam(value = "stop") String stop) {
+        logger.info("操作：stop");
+        ControlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
 
-    public static void main(String[] args) {
-        try {
-            GpioController gpio = GpioFactory.getInstance();
-            // SoftPwm softPwm = SoftPwm.softPwmCreate(RaspiPin.GPIO_29.,100,100);
-            //启动
-            GpioPinDigitalOutput enableA = gpio.provisionDigitalOutputPin(
-                    RaspiPin.GPIO_00, "wheelAOut1", PinState.HIGH);
-            GpioPinDigitalOutput direct = gpio.provisionDigitalOutputPin(
-                    RaspiPin.GPIO_01, "wheelAOut2", PinState.HIGH);
 
-            Pin pulPinPwm = CommandArgumentParser.getPin(//A的使能控制
-                    RaspiPin.class,    // pin provider class to obtain pin instance from
-                    RaspiPin.GPIO_29,  // default pin if no pin argument found
-                    args);
-            System.out.println("开始");
-            GpioPinPwmOutput pwm = gpio.provisionSoftPwmOutputPin(pulPinPwm);
-
-            pwm.setPwmRange(100);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        return "运动...";
     }
-
-    /**
-     *
-     * @description:
-     * @author: jiao_zg22
-     * @time: 2020/12/7 20:04
-     */
-//    public static void piLinkDriver(GpioController gpio,){
-//
-//        //启动
-//        GpioPinDigitalOutput enableA = gpio.provisionDigitalOutputPin(
-//                RaspiPin.GPIO_00, "wheelAOut1", PinState.HIGH);
-//        GpioPinDigitalOutput direct = gpio.provisionDigitalOutputPin(
-//                RaspiPin.GPIO_01, "wheelAOut2", PinState.HIGH);
-//
-//        Pin pulPinPwm = CommandArgumentParser.getPin(//A的使能控制
-//                RaspiPin.class,    // pin provider class to obtain pin instance from
-//                RaspiPin.GPIO_29,  // default pin if no pin argument found
-//                null);
-//        System.out.println("开始");
-//        GpioPinPwmOutput pwm = gpio.provisionSoftPwmOutputPin(pulPinPwm);
-//    }
 }
