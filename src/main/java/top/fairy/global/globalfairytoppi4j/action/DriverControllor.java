@@ -35,6 +35,7 @@ public class DriverControllor {
         if(MS42_AL_DIR_PLUS_VALUE == PinState.HIGH){
             result = "启动树莓派成功";
         }
+
         return result;
     }
 
