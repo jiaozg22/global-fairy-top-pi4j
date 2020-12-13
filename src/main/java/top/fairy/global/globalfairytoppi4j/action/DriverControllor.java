@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import top.fairy.global.globalfairytoppi4j.basic.Car;
 import top.fairy.global.globalfairytoppi4j.basic.ControlCenter;
 import top.fairy.global.globalfairytoppi4j.basic.MoveTypeEnum;
 import top.fairy.global.globalfairytoppi4j.utils.GpioUtil;
@@ -47,39 +48,7 @@ public class DriverControllor {
         new Thread(){
             @Override
            public void run(){
-                if(MoveTypeEnum.forward.getOptKey().equals(opt)){
-                    ControlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AL_DIR_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AL_PUL_PLUS.setPwmRange(speed);
-
-                    ControlCenter.MS42_AR_ENA_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AR_DIR_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AR_PUL_PLUS.setPwmRange(speed);
-                }else if(MoveTypeEnum.left.getOptKey().equals(opt)){
-                    ControlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AL_DIR_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AL_PUL_PLUS.setPwmRange(speed);
-
-                    ControlCenter.MS42_AR_ENA_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AR_DIR_PLUS.setState(PinState.LOW);
-                    ControlCenter.MS42_AR_PUL_PLUS.setPwmRange(speed);
-                }else if(MoveTypeEnum.right.getOptKey().equals(opt)){
-                    ControlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AL_DIR_PLUS.setState(PinState.LOW);
-                    ControlCenter.MS42_AL_PUL_PLUS.setPwmRange(speed);
-
-                    ControlCenter.MS42_AR_ENA_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AR_DIR_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AR_PUL_PLUS.setPwmRange(speed);
-                }else if(MoveTypeEnum.back.getOptKey().equals(opt)){
-                    ControlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AL_DIR_PLUS.setState(PinState.LOW);
-                    ControlCenter.MS42_AL_PUL_PLUS.setPwmRange(speed);
-
-                    ControlCenter.MS42_AR_ENA_PLUS.setState(PinState.HIGH);
-                    ControlCenter.MS42_AR_DIR_PLUS.setState(PinState.LOW);
-                    ControlCenter.MS42_AR_PUL_PLUS.setPwmRange(speed);
-                }
+                Car.opt_type(speed,opt);//小车运动
            }
         }.start();
 
@@ -92,8 +61,7 @@ public class DriverControllor {
     @RequestMapping(value = "/stop" , method = RequestMethod.GET)
     String stop(@RequestParam(value = "stop") String stop) {
         logger.info("操作：stop");
-        ControlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
-        ControlCenter.MS42_AR_ENA_PLUS.setState(PinState.LOW);
+        Car.stop();
 
         return "运动...";
     }
