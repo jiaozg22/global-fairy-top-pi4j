@@ -46,9 +46,15 @@ public final class  ControlCenter implements Pi {
     public static final GpioPinPwmOutput MS42_AR_PUL_PLUS = gpio.provisionSoftPwmOutputPin(GPIP_28_PWM);
 
 
+    //用接口方法，提醒用户，不要忘记连接的过程
+    public static void linkToMotor(){
+        TB6600DriverLinkPi tB6600DriverLinkPi = new TB6600DriverLinkPi();
+        tB6600DriverLinkPi.link();
+    }
+
     @Override
     public  boolean link() {
-        TB6600DriverLinkPi tB6600DriverLinkPi = new TB6600DriverLinkPi();
+        linkToMotor();
         return true;
     }
 }

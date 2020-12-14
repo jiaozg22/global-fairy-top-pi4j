@@ -3,7 +3,6 @@ package top.fairy.global.globalfairytoppi4j.basic;
 import com.pi4j.io.gpio.PinState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author jiao_zg22
@@ -72,4 +71,17 @@ public class Car {
         return "运动停止成功";
     }
 
+    public static String autoMove(int speed){
+        ControlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
+        ControlCenter.MS42_AL_DIR_PLUS.setState(PinState.HIGH);
+        ControlCenter.MS42_AL_PUL_PLUS.setPwmRange(speed);
+
+        ControlCenter.MS42_AR_ENA_PLUS.setState(PinState.HIGH);
+        ControlCenter.MS42_AR_DIR_PLUS.setState(PinState.HIGH);
+        ControlCenter.MS42_AR_PUL_PLUS.setPwmRange(speed);
+
+        //启动自动运行处理器，进行突发事件监听，并根据情况自动调用突发事件处理程序
+        //TODO:JIAO_ZG22
+        return "自动运行中";
+    }
 }

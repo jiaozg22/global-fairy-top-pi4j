@@ -11,6 +11,7 @@ public enum MoveTypeEnum {
     back("back","后退"),
     left("left","左行"),
     right("right","右行"),
+    automove("automove","自动运行"),
     stop("stop","停止");
 
     private MoveTypeEnum(String optKey,String optName){
