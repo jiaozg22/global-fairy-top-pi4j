@@ -38,13 +38,14 @@ public class TB6600DriverLinkPi implements LinkStrategy {
 
     @Override
     public boolean link() {
-        driver_AL_BR.IN_ENA_PLUS = ControlCenter.MS42_AL_ENA_PLUS;
-        driver_AL_BR.IN_DIR_PLUS = ControlCenter.MS42_AL_DIR_PLUS;
-        driver_AL_BR.IN_PUL_PLUS = ControlCenter.MS42_AL_PUL_PLUS;
+        ControlCenter controlCenter = new ControlCenter();
+        driver_AL_BR.IN_ENA_PLUS = controlCenter.MS42_AL_ENA_PLUS;
+        driver_AL_BR.IN_DIR_PLUS = controlCenter.MS42_AL_DIR_PLUS;
+//        driver_AL_BR.IN_PUL_PLUS = controlCenter.MS42_AL_PUL_PLUS;
 
-        driver_AR_BL.IN_ENA_PLUS = ControlCenter.MS42_AR_ENA_PLUS;
-        driver_AR_BL.IN_DIR_PLUS = ControlCenter.MS42_AR_DIR_PLUS;
-        driver_AR_BL.IN_PUL_PLUS = ControlCenter.MS42_AR_PUL_PLUS;
+        driver_AR_BL.IN_ENA_PLUS = controlCenter.MS42_AR_ENA_PLUS;
+        driver_AR_BL.IN_DIR_PLUS = controlCenter.MS42_AR_DIR_PLUS;
+//        driver_AR_BL.IN_PUL_PLUS = controlCenter.MS42_AR_PUL_PLUS;
 
         //TODO:jiao_zg22 判断策略
         return false;
