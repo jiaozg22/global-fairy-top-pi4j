@@ -44,7 +44,7 @@ public class  ControlCenter implements Pi {
     public GpioPinDigitalOutput MS42_AR_ENA_PLUS = gpio.provisionDigitalOutputPin(
             RaspiPin.GPIO_02, "MS42_AR_ENA_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_AR_DIR_PLUS = gpio.provisionDigitalOutputPin(
-            RaspiPin.GPIO_04, "MS42_AR_DIR_PLUS", PinState.LOW);
+            RaspiPin.GPIO_04, "MS42_AR_DIR_PLUS", PinState.HIGH);
 
 //    public Pin GPIP_28_PWM = CommandArgumentParser.getPin(//A的使能控制
 //            RaspiPin.class,    // pin provider class to obtain pin instance from

@@ -34,7 +34,7 @@ public class Car {
             controlCenter.MS42_AL_DIR_PLUS.setState(PinState.LOW);
 
             controlCenter.MS42_AR_ENA_PLUS.setState(PinState.LOW);
-            controlCenter.MS42_AR_DIR_PLUS.setState(PinState.LOW);
+            controlCenter.MS42_AR_DIR_PLUS.setState(PinState.HIGH);
 //            ControlCenter.MS42_AL_PUL_PLUS.setPwmRange(100);
 //            ControlCenter.MS42_AL_PUL_PLUS.setPwm(speed);
             // continuous loop
