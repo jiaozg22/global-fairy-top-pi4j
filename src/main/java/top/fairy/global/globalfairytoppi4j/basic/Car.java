@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class Car {
     private static final Logger logger = LogManager.getLogger();
-
+    private static ControlCenter controlCenter = new ControlCenter();
 
     /**
      *
@@ -22,7 +22,7 @@ public class Car {
      * @time: 2020/12/13 17:08
      */
     public static void opt_type(int speed,String optKey){
-        ControlCenter controlCenter = new ControlCenter();
+
         com.pi4j.wiringpi.Gpio.wiringPiSetup();
         if(MoveTypeEnum.forward.getOptKey().equals(optKey)){
 
@@ -32,6 +32,9 @@ public class Car {
             Long timestamp = System.currentTimeMillis();
             controlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
             controlCenter.MS42_AL_DIR_PLUS.setState(PinState.LOW);
+
+            controlCenter.MS42_AR_ENA_PLUS.setState(PinState.LOW);
+            controlCenter.MS42_AR_DIR_PLUS.setState(PinState.LOW);
 //            ControlCenter.MS42_AL_PUL_PLUS.setPwmRange(100);
 //            ControlCenter.MS42_AL_PUL_PLUS.setPwm(speed);
             // continuous loop
@@ -92,10 +95,10 @@ public class Car {
     }
 
     public static String stop() {
-        ControlCenter controlCenter = new ControlCenter();
+
         logger.info("操作：stop");
-        controlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
-        controlCenter.MS42_AR_ENA_PLUS.setState(PinState.LOW);
+        controlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
+        controlCenter.MS42_AR_ENA_PLUS.setState(PinState.HIGH);
 
 //        ControlCenter.MS42_AL_PUL_PLUS.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
 //        ControlCenter.MS42_AR_PUL_PLUS.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
@@ -106,7 +109,7 @@ public class Car {
     }
 
     public static String autoMove(int speed){
-        ControlCenter controlCenter = new ControlCenter();
+
         controlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
         controlCenter.MS42_AL_DIR_PLUS.setState(PinState.HIGH);
 //        controlCenter.MS42_AL_PUL_PLUS.setPwmRange(speed);
