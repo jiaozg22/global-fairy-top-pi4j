@@ -32,7 +32,7 @@ public class AvoidSendorController {
 
                 //监听针脚
                 try {
-                    AvoidSensor avoidSensor = new AvoidSensor();
+                    AvoidSensor.observer();
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
