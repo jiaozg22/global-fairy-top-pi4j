@@ -27,7 +27,7 @@ public class Car {
         if(MoveTypeEnum.forward.getOptKey().equals(optKey)){
 
             // create soft-pwm pins (min=0 ; max=100)
-            int setSpeedErrorNO = SoftPwm.softPwmCreate(29, 0, speed);
+//            int setSpeedErrorNO = SoftPwm.softPwmCreate(29, 0, speed);
 
             Long timestamp = System.currentTimeMillis();
             controlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
@@ -35,21 +35,40 @@ public class Car {
 
             controlCenter.MS42_AR_ENA_PLUS.setState(PinState.LOW);
             controlCenter.MS42_AR_DIR_PLUS.setState(PinState.HIGH);
-//            ControlCenter.MS42_AL_PUL_PLUS.setPwmRange(100);
-//            ControlCenter.MS42_AL_PUL_PLUS.setPwm(speed);
+
+            controlCenter.MS42_BL_ENA_PLUS.setState(PinState.LOW);
+            controlCenter.MS42_BL_DIR_PLUS.setState(PinState.LOW);
+
+            controlCenter.MS42_BR_ENA_PLUS.setState(PinState.LOW);
+            controlCenter.MS42_BR_DIR_PLUS.setState(PinState.HIGH);
+
             // continuous loop
             while (true) {
-                for (int i = 1; i <= 6; i++) {
-                    SoftPwm.softPwmStop(29);
-                    SoftPwm.softPwmCreate(29, 0, speed);
-                    SoftPwm.softPwmWrite(29, i);
+                for (int i = 1; i <= speed; i++) {
+
+//                    SoftPwm.softPwmWrite(29, i);
 
 
-                    SoftPwm.softPwmStop(28);
-                    SoftPwm.softPwmCreate(28, 0, speed);
-                    SoftPwm.softPwmWrite(28, i);
+                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum());
+                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), 0, speed);
+                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), i);
+
+                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum());
+                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), 0, speed);
+                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), i);
+
+                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum());
+                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), 0, speed);
+                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), i);
+
+                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum());
+                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), 0, speed);
+                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), i);
+
+
+
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
