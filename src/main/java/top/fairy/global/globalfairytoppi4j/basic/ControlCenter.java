@@ -23,7 +23,7 @@ public class  ControlCenter implements Pi {
 
     //树莓派的引脚设计规划：树莓派与小车轮子的连接：AL:左前方 ；AR:右前方 ;BL:左后方 ；BR:右后方
     public GpioPinDigitalOutput MS42_AL_ENA_PLUS = gpio.provisionDigitalOutputPin(
-            PiLinkEnum.MS42_AL_DIR_PLUS.getGpioNum(), "MS42_AL_ENA_PLUS", PinState.LOW);
+            PiLinkEnum.MS42_AL_ENA_PLUS.getGpioNum(), "MS42_AL_ENA_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_AL_DIR_PLUS = gpio.provisionDigitalOutputPin(
             PiLinkEnum.MS42_AL_DIR_PLUS.getGpioNum(), "MS42_AL_DIR_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_AL_PUL_PLUS = gpio.provisionDigitalOutputPin(
@@ -31,14 +31,14 @@ public class  ControlCenter implements Pi {
 
 
     public GpioPinDigitalOutput MS42_AR_ENA_PLUS = gpio.provisionDigitalOutputPin(
-            PiLinkEnum.MS42_AR_DIR_PLUS.getGpioNum(), "MS42_AR_ENA_PLUS", PinState.LOW);
+            PiLinkEnum.MS42_AR_ENA_PLUS.getGpioNum(), "MS42_AR_ENA_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_AR_DIR_PLUS = gpio.provisionDigitalOutputPin(
             PiLinkEnum.MS42_AR_DIR_PLUS.getGpioNum(), "MS42_AR_DIR_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_AR_PUL_PLUS = gpio.provisionDigitalOutputPin(
             PiLinkEnum.MS42_AR_PUL_PLUS.getGpioNum(), "MS42_AR_PUL_PLUS", PinState.LOW);
 
     public GpioPinDigitalOutput MS42_BL_ENA_PLUS = gpio.provisionDigitalOutputPin(
-            PiLinkEnum.MS42_BL_DIR_PLUS.getGpioNum(), "MS42_BL_ENA_PLUS", PinState.LOW);
+            PiLinkEnum.MS42_BL_ENA_PLUS.getGpioNum(), "MS42_BL_ENA_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_BL_DIR_PLUS = gpio.provisionDigitalOutputPin(
             PiLinkEnum.MS42_BL_DIR_PLUS.getGpioNum(), "MS42_BL_DIR_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_BL_PUL_PLUS = gpio.provisionDigitalOutputPin(
@@ -46,7 +46,7 @@ public class  ControlCenter implements Pi {
 
 
     public GpioPinDigitalOutput MS42_BR_ENA_PLUS = gpio.provisionDigitalOutputPin(
-            PiLinkEnum.MS42_BR_DIR_PLUS.getGpioNum(), "MS42_BR_ENA_PLUS", PinState.LOW);
+            PiLinkEnum.MS42_BR_ENA_PLUS.getGpioNum(), "MS42_BR_ENA_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_BR_DIR_PLUS = gpio.provisionDigitalOutputPin(
             PiLinkEnum.MS42_BR_DIR_PLUS.getGpioNum(), "MS42_BR_DIR_PLUS", PinState.LOW);
     public GpioPinDigitalOutput MS42_BR_PUL_PLUS = gpio.provisionDigitalOutputPin(

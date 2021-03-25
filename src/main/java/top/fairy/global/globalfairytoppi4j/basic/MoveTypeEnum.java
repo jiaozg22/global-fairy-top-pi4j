@@ -11,6 +11,8 @@ public enum MoveTypeEnum {
     back("back","后退"),
     left("left","左行"),
     right("right","右行"),
+    round("round","顺时针旋转"),
+    round_back("round_back","逆时针旋转"),
     automove("automove","自动运行"),
     stop("stop","停止");
 

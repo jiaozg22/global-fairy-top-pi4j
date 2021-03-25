@@ -12,24 +12,24 @@ import com.pi4j.io.gpio.RaspiPin;
 public enum PiLinkEnum {
 
     //前左电机
-    MS42_AL_ENA_PLUS(RaspiPin.GPIO_27,36),
-    MS42_AL_DIR_PLUS(RaspiPin.GPIO_28,38),
-    MS42_AL_PUL_PLUS(RaspiPin.GPIO_29,40),
+    MS42_AL_ENA_PLUS(RaspiPin.GPIO_27,27),
+    MS42_AL_DIR_PLUS(RaspiPin.GPIO_28,28),
+    MS42_AL_PUL_PLUS(RaspiPin.GPIO_29,29),
 
     //前右电机
-    MS42_AR_ENA_PLUS(RaspiPin.GPIO_24,35),
-    MS42_AR_DIR_PLUS(RaspiPin.GPIO_25,37),
-    MS42_AR_PUL_PLUS(RaspiPin.GPIO_26,32),
+    MS42_AR_ENA_PLUS(RaspiPin.GPIO_24,24),
+    MS42_AR_DIR_PLUS(RaspiPin.GPIO_25,25),
+    MS42_AR_PUL_PLUS(RaspiPin.GPIO_26,26),
 
     //后左电机
-    MS42_BL_ENA_PLUS(RaspiPin.GPIO_21,29),
-    MS42_BL_DIR_PLUS(RaspiPin.GPIO_22,31),
-    MS42_BL_PUL_PLUS(RaspiPin.GPIO_23,33),
+    MS42_BL_ENA_PLUS(RaspiPin.GPIO_21,21),
+    MS42_BL_DIR_PLUS(RaspiPin.GPIO_22,22),
+    MS42_BL_PUL_PLUS(RaspiPin.GPIO_23,23),
 
     //后右电机
-    MS42_BR_ENA_PLUS(RaspiPin.GPIO_00,11),
-    MS42_BR_DIR_PLUS(RaspiPin.GPIO_02,13),
-    MS42_BR_PUL_PLUS(RaspiPin.GPIO_03,15);
+    MS42_BR_ENA_PLUS(RaspiPin.GPIO_00,00),
+    MS42_BR_DIR_PLUS(RaspiPin.GPIO_02,02),
+    MS42_BR_PUL_PLUS(RaspiPin.GPIO_03,03);
 
     /**
      * gpio引脚
