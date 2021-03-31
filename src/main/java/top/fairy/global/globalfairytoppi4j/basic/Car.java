@@ -46,58 +46,7 @@ public class Car {
 
 
             // continuous loop
-            while (true) {
-                for (int i = 1; i <= 6; i++) {
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), i);
-
-
-                    try {
-                        long timestampBefore2 = timestamp;
-                        timestamp = System.currentTimeMillis();
-                        System.out.println(timestampBefore2 - timestamp);
-                        //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                        Thread.sleep(1000);//设定1s,100个脉冲。
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    timestamp = System.currentTimeMillis();
-                    logger.info(timestamp);
-                }
-
-                try {
-                    long timestampBefore2 = timestamp;
-                    timestamp = System.currentTimeMillis();
-                    System.out.println(timestampBefore2 - timestamp);
-                    //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                    Thread.sleep(1000);//设定1s,100个脉冲。
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-//            ControlCenter.MS42_AR_PUL_PLUS.setPwmRange(100);
-//            ControlCenter.MS42_AR_PUL_PLUS.setPwm(speed);
-
-            }
+            contiuneLoop(timestamp,speed);
 
 
         } else if (MoveTypeEnum.left.getOptKey().equals(optKey)) {
@@ -116,55 +65,8 @@ public class Car {
 
 
             // continuous loop
-            while (true) {
-                for (int i = 1; i <= 6; i++) {
+            contiuneLoop(timestamp,speed);
 
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), i);
-
-
-                    try {
-                        long timestampBefore2 = timestamp;
-                        timestamp = System.currentTimeMillis();
-                        System.out.println(timestampBefore2 - timestamp);
-                        //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                        Thread.sleep(1000);//设定1s,100个脉冲。
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    timestamp = System.currentTimeMillis();
-                    logger.info(timestamp);
-                }
-
-                try {
-                    long timestampBefore2 = timestamp;
-                    timestamp = System.currentTimeMillis();
-                    System.out.println(timestampBefore2 - timestamp);
-                    //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                    Thread.sleep(1000);//设定1s,100个脉冲。
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
         } else if (MoveTypeEnum.right.getOptKey().equals(optKey)) {
             Long timestamp = System.currentTimeMillis();
             controlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
@@ -180,55 +82,7 @@ public class Car {
             controlCenter.MS42_BR_DIR_PLUS.setState(PinState.HIGH);
 
             // continuous loop
-            while (true) {
-                for (int i = 1; i <= 6; i++) {
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), i);
-
-
-                    try {
-                        long timestampBefore2 = timestamp;
-                        timestamp = System.currentTimeMillis();
-                        System.out.println(timestampBefore2 - timestamp);
-                        //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                        Thread.sleep(1000);//设定1s,100个脉冲。
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    timestamp = System.currentTimeMillis();
-                    logger.info(timestamp);
-                }
-
-                try {
-                    long timestampBefore2 = timestamp;
-                    timestamp = System.currentTimeMillis();
-                    System.out.println(timestampBefore2 - timestamp);
-                    //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                    Thread.sleep(1000);//设定1s,100个脉冲。
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            contiuneLoop(timestamp,speed);
         } else if (MoveTypeEnum.back.getOptKey().equals(optKey)) {
             Long timestamp = System.currentTimeMillis();
             controlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
@@ -244,55 +98,7 @@ public class Car {
             controlCenter.MS42_BR_DIR_PLUS.setState(PinState.LOW);
 
             // continuous loop
-            while (true) {
-                for (int i = 1; i <= 6; i++) {
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), i);
-
-
-                    try {
-                        long timestampBefore2 = timestamp;
-                        timestamp = System.currentTimeMillis();
-                        System.out.println(timestampBefore2 - timestamp);
-                        //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                        Thread.sleep(1000);//设定1s,100个脉冲。
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    timestamp = System.currentTimeMillis();
-                    logger.info(timestamp);
-                }
-
-                try {
-                    long timestampBefore2 = timestamp;
-                    timestamp = System.currentTimeMillis();
-                    System.out.println(timestampBefore2 - timestamp);
-                    //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                    Thread.sleep(1000);//设定1s,100个脉冲。
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            contiuneLoop(timestamp,speed);
         } else if (MoveTypeEnum.round.getOptKey().equals(optKey)) {
             Long timestamp = System.currentTimeMillis();
             controlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
@@ -307,56 +113,7 @@ public class Car {
             controlCenter.MS42_BR_ENA_PLUS.setState(PinState.LOW);
             controlCenter.MS42_BR_DIR_PLUS.setState(PinState.HIGH);
 
-            // continuous loop
-            while (true) {
-                for (int i = 1; i <= 6; i++) {
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), 0, speed);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), i);
-
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), i);
-
-
-                    try {
-                        long timestampBefore2 = timestamp;
-                        timestamp = System.currentTimeMillis();
-                        System.out.println(timestampBefore2 - timestamp);
-                        //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                        Thread.sleep(1000);//设定1s,100个脉冲。
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    timestamp = System.currentTimeMillis();
-                    logger.info(timestamp);
-                }
-
-                try {
-                    long timestampBefore2 = timestamp;
-                    timestamp = System.currentTimeMillis();
-                    System.out.println(timestampBefore2 - timestamp);
-                    //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
-
-                    Thread.sleep(100);//设定1s,100个脉冲。
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            contiuneLoop(timestamp,speed);
         }else if (MoveTypeEnum.round_back.getOptKey().equals(optKey)) {
             Long timestamp = System.currentTimeMillis();
             controlCenter.MS42_AL_ENA_PLUS.setState(PinState.LOW);
@@ -371,44 +128,38 @@ public class Car {
             controlCenter.MS42_BR_ENA_PLUS.setState(PinState.LOW);
             controlCenter.MS42_BR_DIR_PLUS.setState(PinState.LOW);
 
-            // continuous loop
-            while (true) {
-                for (int i = 1; i <= 6; i++) {
+            contiuneLoop(timestamp,speed);
 
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), 0, speed);
+        }
 
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), 0, speed);
+        logger.info("运动");
+    }
 
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), 0, speed);
+    private static void contiuneLoop(Long timestamp,int speed){
+        // continuous loop
+        while (true) {
+            for (int i = 1; i <= 6; i++) {
 
-                    SoftPwm.softPwmStop(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum());
-                    SoftPwm.softPwmCreate(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), 0, speed);
+                SoftPwm.softPwmStop(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum());
+                SoftPwm.softPwmCreate(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), 0, speed);
 
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), i);
+                SoftPwm.softPwmStop(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum());
+                SoftPwm.softPwmCreate(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), 0, speed);
 
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), i);
+                SoftPwm.softPwmStop(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum());
+                SoftPwm.softPwmCreate(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), 0, speed);
 
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), i);
+                SoftPwm.softPwmStop(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum());
+                SoftPwm.softPwmCreate(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), 0, speed);
 
-                    SoftPwm.softPwmWrite(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), i);
+                SoftPwm.softPwmWrite(PiLinkEnum.MS42_AL_PUL_PLUS.getPinNum(), i);
 
+                SoftPwm.softPwmWrite(PiLinkEnum.MS42_AR_PUL_PLUS.getPinNum(), i);
 
-                    try {
-                        long timestampBefore2 = timestamp;
-                        timestamp = System.currentTimeMillis();
-                        System.out.println(timestampBefore2 - timestamp);
-                        //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
+                SoftPwm.softPwmWrite(PiLinkEnum.MS42_BL_PUL_PLUS.getPinNum(), i);
 
-                        Thread.sleep(100);//设定1s,100个脉冲。
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    timestamp = System.currentTimeMillis();
-                    logger.info(timestamp);
-                }
+                SoftPwm.softPwmWrite(PiLinkEnum.MS42_BR_PUL_PLUS.getPinNum(), i);
+
 
                 try {
                     long timestampBefore2 = timestamp;
@@ -416,14 +167,25 @@ public class Car {
                     System.out.println(timestampBefore2 - timestamp);
                     //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
 
-                    Thread.sleep(1000);//设定1s,100个脉冲。
+                    Thread.sleep(100);//设定1s,100个脉冲。
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                timestamp = System.currentTimeMillis();
+                logger.info(timestamp);
+            }
+
+            try {
+                long timestampBefore2 = timestamp;
+                timestamp = System.currentTimeMillis();
+                System.out.println(timestampBefore2 - timestamp);
+                //50*100次 大约（有代码执行延迟）50000ms=5s后达到稳定。
+
+                Thread.sleep(1000);//设定1s,100个脉冲。
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
-
-        logger.info("运动");
     }
 
     public static String stop() {
