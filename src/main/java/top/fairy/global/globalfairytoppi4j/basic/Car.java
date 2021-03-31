@@ -1,5 +1,6 @@
 package top.fairy.global.globalfairytoppi4j.basic;
 
+import com.pi4j.io.gpio.PinPullResistance;
 import com.pi4j.io.gpio.PinState;
 import com.pi4j.wiringpi.SoftPwm;
 import org.apache.logging.log4j.LogManager;
@@ -429,18 +430,20 @@ public class Car {
 
         logger.info("操作：stop");
         controlCenter.MS42_AL_ENA_PLUS.setState(PinState.HIGH);
-        controlCenter.MS42_AR_ENA_PLUS.setState(PinState.HIGH);
-        controlCenter.MS42_AR_ENA_PLUS.setShutdownOptions(true,PinState.LOW);
-        controlCenter.MS42_BL_ENA_PLUS.setState(PinState.HIGH);
-        controlCenter.MS42_BL_ENA_PLUS.setShutdownOptions(true,PinState.LOW);
-        controlCenter.MS42_BR_ENA_PLUS.setState(PinState.HIGH);
-        controlCenter.MS42_BR_ENA_PLUS.setShutdownOptions(true,PinState.LOW);
+        controlCenter.MS42_AL_ENA_PLUS.setShutdownOptions(true,PinState.LOW, PinPullResistance.OFF);
 
-//        ControlCenter.MS42_AL_PUL_PLUS.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
+        controlCenter.MS42_AR_ENA_PLUS.setState(PinState.HIGH);
+        controlCenter.MS42_AR_ENA_PLUS.setShutdownOptions(true,PinState.LOW, PinPullResistance.OFF);
+        controlCenter.MS42_BL_ENA_PLUS.setState(PinState.HIGH);
+        controlCenter.MS42_BL_ENA_PLUS.setShutdownOptions(true,PinState.LOW, PinPullResistance.OFF);
+        controlCenter.MS42_BR_ENA_PLUS.setState(PinState.HIGH);
+        controlCenter.MS42_BR_ENA_PLUS.setShutdownOptions(true,PinState.LOW, PinPullResistance.OFF);
+
+//        ControlCenter.MS42_AR_ENA_PLUS.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
 //        ControlCenter.MS42_AR_PUL_PLUS.setShutdownOptions(true, PinState.LOW, PinPullResistance.OFF);
 
         controlCenter.gpio.shutdown();
-//        controlCenter.gpio.unprovisionPin(controlCenter.MS42_AL_PUL_PLUS,controlCenter.MS42_AR_PUL_PLUS);
+        controlCenter.gpio.unprovisionPin(controlCenter.MS42_AL_PUL_PLUS,controlCenter.MS42_AR_PUL_PLUS,controlCenter.MS42_BL_PUL_PLUS,controlCenter.MS42_BR_PUL_PLUS);
         return "运动停止成功";
     }
 
