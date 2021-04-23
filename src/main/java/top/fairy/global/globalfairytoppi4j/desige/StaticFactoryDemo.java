@@ -1,7 +1,11 @@
 package top.fairy.global.globalfairytoppi4j.desige;
 
-public class StaticFactoryDemo {
+
+import top.fairy.global.globalfairytoppi4j.utils.NoPublicClass;
+
+class StaticFactoryDemo extends NoPublicClass {
     public static StaticFactoryDemo factory = null;
+    NoPublicClass noPublicClass = new NoPublicClass();
     public Object creat(String clzName) throws Exception {
         Object result = Class.forName(clzName).newInstance();
 //        System.out.println("预备生产"+className);
@@ -35,5 +39,7 @@ public class StaticFactoryDemo {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 }

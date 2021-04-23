@@ -47,5 +47,10 @@ public class SoftPwmUtils {
         }
     }
 
+    public static void main(String[] args) {
+        NoPublicClass noPublicClass = new NoPublicClass();
+        System.out.println(noPublicClass.a);
+    }
+
 
 }
