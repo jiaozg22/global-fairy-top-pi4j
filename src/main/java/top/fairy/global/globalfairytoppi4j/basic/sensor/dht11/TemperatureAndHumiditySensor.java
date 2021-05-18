@@ -3,6 +3,7 @@ package top.fairy.global.globalfairytoppi4j.basic.sensor.dht11;
 import com.pi4j.io.gpio.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 import top.fairy.global.globalfairytoppi4j.basic.sensor.Sensor;
 
 import java.util.Arrays;
@@ -13,6 +14,7 @@ import java.util.Arrays;
  * @description 温湿度传感器
  * @date 2021/5/18 16:48
  */
+@Component
 public class TemperatureAndHumiditySensor implements Sensor {
     private static final Logger logger = LogManager.getLogger();
 
@@ -20,7 +22,7 @@ public class TemperatureAndHumiditySensor implements Sensor {
     private static final String GND = "9";//9号物理针脚，连接GND针脚
     private static final Pin dataPin = RaspiPin.GPIO_01;//12号物理针脚，对应GPIO_01,连接DATA针脚
 
-    private static GpioController gpio = GpioFactory.getInstance();
+    private static GpioController gpio = null;
 
     static GpioPinDigitalInput outReader = null;
 
@@ -29,11 +31,15 @@ public class TemperatureAndHumiditySensor implements Sensor {
     //读取针脚数据。data针脚：既是控制线，又是数据线；先发送控制信号，然后等待100ms,开始接收数据；
     //数据格式：8位湿度传感器湿度数+8位温度传感器小数，8位温度传感器整数+8位温度传感器小数，+8位校验数据。
 
-    public static String read(int[] oneData) {
+    public String read(int[] oneData) {
+        if (gpio == null) {//第一次初始化，后面无需初始化
+            gpio = GpioFactory.getInstance();
+        }
+
         StringBuffer result = new StringBuffer("");
         //每次读取是上一次的温湿度值，不是本次的值。
         int i = 0;
-        if(oneData == null){
+        if (oneData == null) {
             oneData = new int[40];
         }
 
@@ -89,15 +95,18 @@ public class TemperatureAndHumiditySensor implements Sensor {
             //结果转换
             result.append("h:").append(humidity_bit).append(humidity_point_bit).append(";")
                     .append("t:").append(temperature_bit).append(temperature_point_bit);
-        }else{
+        } else {
             return "-1";//错误读取，需要重新调起
         }
-
+        this.addSensorListener(new TemperatureListener());
         return result.toString();
     }
 
     public static void close() {
-        gpio.shutdown();
+        if (gpio != null) {
+            gpio.shutdown();
+        }
+
     }
 
     //注册监听事件，温度湿度事件分别会将高于某个值的情况打印到日志中

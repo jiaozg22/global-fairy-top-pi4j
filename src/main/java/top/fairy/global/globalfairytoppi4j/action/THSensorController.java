@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import top.fairy.global.globalfairytoppi4j.basic.sensor.dht11.TemperatureAndHumiditySensor;
 
+import javax.annotation.Resource;
+
 /**
  * @author jiao_zg22
  * @version 1.0
@@ -21,6 +23,9 @@ import top.fairy.global.globalfairytoppi4j.basic.sensor.dht11.TemperatureAndHumi
 public class THSensorController {
     private static final Logger logger = LogManager.getLogger();
 
+    @Resource
+    TemperatureAndHumiditySensor temperatureAndHumiditySensor;
+
     //读取温度湿度，并进行相应监听
     @RequestMapping(value = "/readth" , method = RequestMethod.POST)
     String read(@RequestParam(value = "radio") int radio) {
@@ -32,7 +37,7 @@ public class THSensorController {
 
                 //监听针脚
                 try {
-                    String value = TemperatureAndHumiditySensor.read(null);
+                    String value = temperatureAndHumiditySensor.read(null);
                     Thread.sleep(5000);
                     logger.info("温度湿度读取结果为："+value);
                     //关闭树莓派
