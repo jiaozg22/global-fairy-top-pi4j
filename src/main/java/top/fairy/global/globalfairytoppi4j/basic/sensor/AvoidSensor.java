@@ -3,6 +3,7 @@ package top.fairy.global.globalfairytoppi4j.basic.sensor;
 import com.pi4j.io.gpio.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import top.fairy.global.globalfairytoppi4j.basic.sensor.dht11.SensorListener;
 
 /**
  * @author jiao_zg22
@@ -11,7 +12,7 @@ import org.apache.logging.log4j.Logger;
  *
  * @date 2021/1/25 22:34
  */
-public class AvoidSensor {
+public class AvoidSensor implements Sensor{
     private static final Logger logger = LogManager.getLogger();
     private static final String VCC = "1";//1号物理针脚，连接VCC针脚
     private static final String GND = "25";//25号物理针脚，连接GND针脚
@@ -29,5 +30,10 @@ public class AvoidSensor {
 
     public static void close(){
         gpio.shutdown();
+    }
+
+    @Override
+    public void addSensorListener(SensorListener sensorListener) {
+
     }
 }
