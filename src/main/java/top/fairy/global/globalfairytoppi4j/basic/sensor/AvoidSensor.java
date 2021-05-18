@@ -15,7 +15,7 @@ public class AvoidSensor {
     private static final Logger logger = LogManager.getLogger();
     private static final String VCC = "1";//1号物理针脚，连接VCC针脚
     private static final String GND = "25";//25号物理针脚，连接GND针脚
-    private static final Pin out = RaspiPin.GPIO_25;//37号物理针脚，对应GPIO_25,连接OUT针脚
+    private static final Pin out = RaspiPin.GPIO_07;//7号物理针脚，对应GPIO_07,连接OUT针脚
     private static GpioController gpio = GpioFactory.getInstance();
     static GpioPinDigitalInput outReader = null;
 
