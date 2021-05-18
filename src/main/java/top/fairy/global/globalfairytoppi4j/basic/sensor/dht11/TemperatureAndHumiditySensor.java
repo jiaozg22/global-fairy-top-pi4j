@@ -28,13 +28,20 @@ public class TemperatureAndHumiditySensor implements Sensor {
 
     public static int readData;
 
+    public THListener thListener;
+
+
     //读取针脚数据。data针脚：既是控制线，又是数据线；先发送控制信号，然后等待100ms,开始接收数据；
     //数据格式：8位湿度传感器湿度数+8位温度传感器小数，8位温度传感器整数+8位温度传感器小数，+8位校验数据。
 
     public String read(int[] oneData) {
         if (gpio == null) {//第一次初始化，后面无需初始化
             gpio = GpioFactory.getInstance();
+            logger.info("初始化gpio实例");
         }
+        addSensorListener(thListener);
+
+
 
         StringBuffer result = new StringBuffer("");
         //每次读取是上一次的温湿度值，不是本次的值。
@@ -95,12 +102,17 @@ public class TemperatureAndHumiditySensor implements Sensor {
             //结果转换
             result.append("h:").append(humidity_bit).append(humidity_point_bit).append(";")
                     .append("t:").append(temperature_bit).append(temperature_point_bit);
+
+            //开启事件
+            thListener.actionPerformed(new HumidityEvent(100.01f));
+            thListener.actionPerformed(new TemplateEvent(100.01f));
         } else {
             return "-1";//错误读取，需要重新调起
         }
-        this.addSensorListener(new TemperatureListener());
+
         return result.toString();
     }
+
 
     public static void close() {
         if (gpio != null) {
@@ -112,7 +124,10 @@ public class TemperatureAndHumiditySensor implements Sensor {
     //注册监听事件，温度湿度事件分别会将高于某个值的情况打印到日志中
     @Override
     public void addSensorListener(SensorListener sensorListener) {
-        sensorListener.actionPerformed(new TemplateEvent(10.01f));
-        sensorListener.actionPerformed(new HumidityEvent(10.01f));
+        if (thListener == null) {
+            this.thListener = (THListener) sensorListener;
+        }
+
+
     }
 }

@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 public class HumidityEvent implements SensorEvent {
     private static final Logger logger = LogManager.getLogger();
 
+    public static float highLevel = 30.00f;
     public float currentValue = 0.0f;
 
     public HumidityEvent(float currentValue) {
@@ -25,6 +26,8 @@ public class HumidityEvent implements SensorEvent {
 
     @Override
     public void action() {
-        logger.info("湿度告警，进行事件提醒");
+        if(highLevel > highLevel){
+            logger.info("湿度告警，进行事件提醒");
+        }
     }
 }
