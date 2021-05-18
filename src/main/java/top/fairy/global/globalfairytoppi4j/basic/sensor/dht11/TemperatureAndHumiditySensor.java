@@ -39,9 +39,8 @@ public class TemperatureAndHumiditySensor implements Sensor {
             gpio = GpioFactory.getInstance();
             logger.info("初始化gpio实例");
         }
+
         addSensorListener(thListener);
-
-
 
         StringBuffer result = new StringBuffer("");
         //每次读取是上一次的温湿度值，不是本次的值。
@@ -85,6 +84,7 @@ public class TemperatureAndHumiditySensor implements Sensor {
                 check_bit[i - 32] = oneData[i];
             }
         }
+
         String humidity_str = Arrays.toString(humidity_bit);
         String humidity_point_str = Arrays.toString(humidity_bit);
         String temperature_str = Arrays.toString(humidity_bit);
@@ -103,9 +103,10 @@ public class TemperatureAndHumiditySensor implements Sensor {
             result.append("h:").append(humidity_bit).append(humidity_point_bit).append(";")
                     .append("t:").append(temperature_bit).append(temperature_point_bit);
 
-            //开启事件
+            //开启事件监听温度过高告警信息
             thListener.actionPerformed(new HumidityEvent(100.01f));
             thListener.actionPerformed(new TemplateEvent(100.01f));
+
         } else {
             return "-1";//错误读取，需要重新调起
         }
@@ -127,7 +128,5 @@ public class TemperatureAndHumiditySensor implements Sensor {
         if (thListener == null) {
             this.thListener = (THListener) sensorListener;
         }
-
-
     }
 }

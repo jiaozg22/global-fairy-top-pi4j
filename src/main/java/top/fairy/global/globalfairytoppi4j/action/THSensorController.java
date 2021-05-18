@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import top.fairy.global.globalfairytoppi4j.basic.sensor.dht11.TemperatureAndHumiditySensor;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 
 /**
  * @author jiao_zg22
@@ -23,28 +24,33 @@ import javax.annotation.Resource;
 public class THSensorController {
     private static final Logger logger = LogManager.getLogger();
 
+    private static boolean stopMark = false;
+
     @Resource
     TemperatureAndHumiditySensor temperatureAndHumiditySensor;
 
     //读取温度湿度，并进行相应监听
-    @RequestMapping(value = "/readth" , method = RequestMethod.POST)
+    @RequestMapping(value = "/readth", method = RequestMethod.POST)
     String read(@RequestParam(value = "radio") int radio) {
         logger.info("读取速率为：{}", radio);
 
-        new Thread(){
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
 
-                //监听针脚
-                try {
-                    String value = temperatureAndHumiditySensor.read(null);
-                    Thread.sleep(5000);
-                    logger.info("温度湿度读取结果为："+value);
-                    //关闭树莓派
-                    TemperatureAndHumiditySensor.close();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                while (stopMark) {
+                    try {
+                        String value = temperatureAndHumiditySensor.read(null);
+                        Thread.sleep(radio);//按照速录，暂停
+                        logger.info(System.currentTimeMillis()  + "温度湿度读取结果为：" + value);
+//                    //关闭树莓派
+//                    TemperatureAndHumiditySensor.close();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
+
+
             }
         }.start();
 
@@ -53,13 +59,13 @@ public class THSensorController {
     }
 
     //关闭
-    @RequestMapping(value = "/close" , method = RequestMethod.POST)
+    @RequestMapping(value = "/close", method = RequestMethod.POST)
     String read() {
-        logger.info("关闭温湿度读取" );
+        logger.info("关闭温湿度读取");
 
-        new Thread(){
+        new Thread() {
             @Override
-            public void run(){
+            public void run() {
 
                 //监听针脚
                 try {
