@@ -16,6 +16,7 @@ import java.sql.Timestamp;
  * @author jiao_zg22
  * @version 1.0
  * @description 温湿度传感器
+ * 教程地址：https://blog.csdn.net/jiao_zg/category_10334151.html?spm=1001.2014.3001.5482
  * @date 2021/5/18 19:05
  */
 @RestController

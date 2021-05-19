@@ -14,6 +14,7 @@ import top.fairy.global.globalfairytoppi4j.basic.MoveTypeEnum;
  * @author jiao_zg22
  * @version 1.0
  * @description 自动运行接口
+ * 博客地址：https://blog.csdn.net/jiao_zg/category_10334151.html?spm=1001.2014.3001.5482
  * @date 2020/12/4 23:11
  */
 @RestController

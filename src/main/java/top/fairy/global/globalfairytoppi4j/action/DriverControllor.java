@@ -19,6 +19,7 @@ import top.fairy.global.globalfairytoppi4j.utils.GpioUtil;
  * @author jiao_zg22
  * @version 1.0
  * @description 接口
+ * 教程地址：https://blog.csdn.net/jiao_zg/category_10334151.html?spm=1001.2014.3001.5482
  * @date 2020/12/4 23:11
  */
 @RestController
