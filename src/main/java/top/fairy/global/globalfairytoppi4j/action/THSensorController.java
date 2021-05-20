@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import top.fairy.global.globalfairytoppi4j.basic.sensor.dht11.TemperatureAndHumiditySensor;
 
 import javax.annotation.Resource;
-import java.sql.Timestamp;
 
 /**
  * @author jiao_zg22
@@ -39,7 +38,7 @@ public class THSensorController {
             @Override
             public void run() {
 
-                while (stopMark) {
+                while (!stopMark) {
                     try {
                         String value = temperatureAndHumiditySensor.read(null);
                         Thread.sleep(radio);//按照速录，暂停
