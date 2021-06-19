@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import top.fairy.global.globalfairytoppi4j.basic.sensor.dht11.TemperatureAndHumiditySensor;
+import top.fairy.global.globalfairytoppi4j.basic.sensor.dht22.DHT22Sensor;
 
 import javax.annotation.Resource;
 
@@ -19,7 +20,6 @@ import javax.annotation.Resource;
  * @date 2021/5/18 19:05
  */
 @RestController
-@SpringBootApplication
 @RequestMapping(value = "/th_sensor")
 public class THSensorController {
     private static final Logger logger = LogManager.getLogger();
@@ -28,6 +28,11 @@ public class THSensorController {
 
     @Resource
     TemperatureAndHumiditySensor temperatureAndHumiditySensor;
+
+
+    @Resource
+    DHT22Sensor dht22Sensor;
+
 
     //读取温度湿度，并进行相应监听
     @RequestMapping(value = "/readth", method = RequestMethod.POST)

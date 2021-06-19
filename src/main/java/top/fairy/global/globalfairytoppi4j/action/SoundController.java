@@ -16,7 +16,6 @@ import top.fairy.global.globalfairytoppi4j.sound.RecordAndPlay;
  * @date 2021/4/23 20:15
  */
 @RestController
-@SpringBootApplication
 @RequestMapping(value = "/sound")
 public class SoundController {
     private static final Logger logger = LogManager.getLogger();

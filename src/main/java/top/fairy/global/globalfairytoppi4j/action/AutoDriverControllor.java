@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import top.fairy.global.globalfairytoppi4j.basic.Car;
 import top.fairy.global.globalfairytoppi4j.basic.MoveTypeEnum;
+import top.fairy.global.globalfairytoppi4j.beans.DataWorkBean;
+import top.fairy.global.globalfairytoppi4j.service.IDataWorkService;
+
+import javax.annotation.Resource;
 
 /**
  * @author jiao_zg22
@@ -18,10 +22,13 @@ import top.fairy.global.globalfairytoppi4j.basic.MoveTypeEnum;
  * @date 2020/12/4 23:11
  */
 @RestController
-@SpringBootApplication
 @RequestMapping(value = "/auto_driver")
 public class AutoDriverControllor {
     private static final Logger logger = LogManager.getLogger();
+
+    @Resource
+    IDataWorkService iDataWorkService;
+
 
 //    //这里使用@RequestMapping注解表示该方法对应的二级上下文路径
 //    @RequestMapping(value = "/startPi", method = RequestMethod.GET)
@@ -47,8 +54,10 @@ public class AutoDriverControllor {
                 Car.autoMove(speed);//小车运动
            }
         }.start();
+        DataWorkBean dataWorkBean = new DataWorkBean();
 
 
+        iDataWorkService.writeDate(dataWorkBean );
         return "运动...";
     }
 

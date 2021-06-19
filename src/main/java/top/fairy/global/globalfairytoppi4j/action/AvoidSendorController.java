@@ -17,7 +17,6 @@ import top.fairy.global.globalfairytoppi4j.basic.sensor.AvoidSensor;
  * @date 2021/1/24 23:46
  */
 @RestController
-@SpringBootApplication
 @RequestMapping(value = "/sensor/avoid")
 public class AvoidSendorController {
     private static final Logger logger = LogManager.getLogger();

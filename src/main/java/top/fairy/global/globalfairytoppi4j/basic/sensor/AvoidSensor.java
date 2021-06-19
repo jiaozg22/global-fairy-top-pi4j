@@ -3,7 +3,6 @@ package top.fairy.global.globalfairytoppi4j.basic.sensor;
 import com.pi4j.io.gpio.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.fairy.global.globalfairytoppi4j.basic.sensor.dht11.SensorListener;
 
 /**
  * @author jiao_zg22

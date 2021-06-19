@@ -1,4 +1,4 @@
-package top.fairy.global.globalfairytoppi4j.basic.sensor.dht11;
+package top.fairy.global.globalfairytoppi4j.basic.sensor;
 
 /**
  * @author jiao_zg22

@@ -23,7 +23,6 @@ import top.fairy.global.globalfairytoppi4j.utils.GpioUtil;
  * @date 2020/12/4 23:11
  */
 @RestController
-@SpringBootApplication
 @RequestMapping(value = "/driver")
 public class DriverControllor {
     private static final Logger logger = LogManager.getLogger();

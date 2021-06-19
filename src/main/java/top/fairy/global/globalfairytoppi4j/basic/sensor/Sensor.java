@@ -1,7 +1,5 @@
 package top.fairy.global.globalfairytoppi4j.basic.sensor;
 
-import top.fairy.global.globalfairytoppi4j.basic.sensor.dht11.SensorListener;
-
 /**
  *
  * @description:传感器接口
