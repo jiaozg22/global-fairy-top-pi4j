@@ -7,10 +7,13 @@ package top.fairy.global.globalfairytoppi4j.basic;
  * @date 2020/12/5 14:56
  */
 public enum MoveTypeEnum {
-    forward("forword","前进"),
+    forward("forward","前进"),
     back("back","后退"),
     left("left","左行"),
     right("right","右行"),
+    round("round","顺时针旋转"),
+    round_back("round_back","逆时针旋转"),
+    automove("automove","自动运行"),
     stop("stop","停止");
 
     private MoveTypeEnum(String optKey,String optName){
