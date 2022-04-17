@@ -1,0 +1,98 @@
+#
+##spring:
+##  datasource:
+##    username: root
+##    password: 1234
+##    url: jdbc:mysql://180.76.242.204:63306/springboot?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+##    driver-class-name: com.alibaba.druid.proxy.DruidDriver
+#
+##spring:
+##  datasource:
+##    tdengine-server:
+##      jdbc-url: jdbc:TAOS://192.168.181.10:6030/sl?timezone=Asia/Beijing&charset=utf-8
+##      username: root
+##      password: taosdata
+##      type: com.zaxxer.hikari.HikariDataSource      # Hikari连接池的设置
+##      minimum-idle: 5                 #最小连接
+##      maximum-pool-size: 15        #最大连接
+##      auto-commit: true        #自动提交
+##      idle-timeout: 30000        #最大空闲时常
+##      pool-name: TDengineHikariCP        #连接池名
+##      max-lifetime: 1800000        #最大生命周期
+##      connection-timeout: 30000        #连接超时时间
+##      connection-test-query: show tables
+##
+##
+##    mysql-server:
+##      driverClassName: com.mysql.cj.jdbc.Driver
+##      name: mx-assess
+##      jdbc-url: jdbc:mysql://192.168.181.10:3306/mx_assess?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&allowMultiQueries=true&useSSL=false&serverTimezone=UTC
+##      username: root
+##      password: 1111
+##      type: com.zaxxer.hikari.HikariDataSource      # Hikari连接池的设置
+##      minimum-idle: 5                 #最小连接
+##      maximum-pool-size: 15        #最大连接
+##      auto-commit: true        #自动提交
+##      idle-timeout: 30000        #最大空闲时常
+##      pool-name: DatebookHikariCP        #连接池名
+##      max-lifetime: 1800000        #最大生命周期
+##      connection-timeout: 30000        #连接超时时间
+#
+#spring:
+#  datasource:
+#    taos:
+##      jdbc-url: jdbc:TAOS://192.168.0.201:6030/testdb?useSSL=false
+##      driver-class-name: com.taosdata.jdbc.TSDBDriver
+##      username: root
+##      password: taosdata
+##      removeAbandoned: false
+#       type: com.zaxxer.hikari.HikariDataSource          # 数据源类型：HikariCP
+#       driver-class-name: com.taosdata.jdbc.TSDBDriver          # taos驱动
+#       url: jdbc:TAOS://192.168.0.201:6030/testdb?useSSL=false
+#       username: root
+#       password: taosdata
+#       hikari:
+#         connection-timeout: 30000        # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒
+#         minimum-idle: 5                  # 最小连接数
+#         maximum-pool-size: 20            # 最大连接数
+#         auto-commit: true                # 事务自动提交
+#         idle-timeout: 600000             # 连接超时的最大时长（毫秒），超时则被释放（retired），默认:10分钟
+#         pool-name: DateSourceHikariCP     # 连接池名字
+#         max-lifetime: 1800000             # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
+#         connection-test-query: SELECT 1  # 连接测试语句
+#    mysql:
+#
+##        jdbcUrl: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
+##        driverClassName: com.zaxxer.hikari.HikariDataSource
+##        username: root
+##        password: global-fairy.0715
+##        removeAbandoned: false
+##        readOnly: false
+##        connectionTimeout: 30000
+##        idleTimeout: 600000
+##        maxLifetime: 1800000
+#        type: com.zaxxer.hikari.HikariDataSource          # 数据源类型：HikariCP
+#        driver-class-name: com.mysql.jdbc.Driver          # mysql驱动
+#        url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false&useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+#        username: root
+#        password: global-fairy.0715
+#        hikari:
+#          connection-timeout: 30000        # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 默认:30秒
+#          minimum-idle: 5                  # 最小连接数
+#          maximum-pool-size: 20            # 最大连接数
+#          auto-commit: true                # 事务自动提交
+#          idle-timeout: 600000             # 连接超时的最大时长（毫秒），超时则被释放（retired），默认:10分钟
+#          pool-name: DateSourceHikariCP     # 连接池名字
+#          max-lifetime: 1800000             # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟 1800000ms
+#          connection-test-query: SELECT 1  # 连接测试语句
+###mybatis
+##mybatis:
+##  typeAliasesPackage: com.taosdata.jdbc.springbootdemo.domain
+##  configuration:
+##    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl     #打印sql
+##    call-setters-on-nulls: true  #设置查询字段为空时，也返回该字段
+##    map-underscore-to-camel-case: true
+
+spring:
+  profiles:
+    active: ci

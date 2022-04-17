@@ -9,7 +9,7 @@ server:
 #    driver-class-name: com.alibaba.druid.proxy.DruidDriver
 
 mybatis:
-  mapper-locations: classpath:mapping/*Mapper.xml
+  mapper-locations: classpath:mapping/**/*Mapper.xml
   type-aliases-package: top.fairy.global.globalfairytoppi4j.mapper
 
 #spring:
@@ -43,22 +43,10 @@ mybatis:
 #      pool-name: DatebookHikariCP        #连接池名
 #      max-lifetime: 1800000        #最大生命周期
 #      connection-timeout: 30000        #连接超时时间
-
 spring:
-  datasource:
-    one:
-      jdbc-url: jdbc:TAOS://192.168.0.201:6030/testdb?useSSL=false
-      driver-class-name: com.taosdata.jdbc.TSDBDriver
-      username: root
-      password: taosdata
-      removeAbandoned: false
+  profiles:
+    active: dev
 
-    second:
-      jdbc-url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
-      driverClassName: com.mysql.cj.jdbc.Driver
-      username: root
-      password: global-fairy.0715
-      removeAbandoned: false
 
 ##mybatis
 #mybatis:

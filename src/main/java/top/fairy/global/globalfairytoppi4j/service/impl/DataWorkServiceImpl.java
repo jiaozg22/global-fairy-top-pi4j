@@ -2,7 +2,7 @@ package top.fairy.global.globalfairytoppi4j.service.impl;
 
 import org.springframework.stereotype.Service;
 import top.fairy.global.globalfairytoppi4j.beans.DataWorkBean;
-import top.fairy.global.globalfairytoppi4j.mapper.tdengine.DataWorkMapper;
+import top.fairy.global.globalfairytoppi4j.mapper.mysql.DataWorkMapper;
 import top.fairy.global.globalfairytoppi4j.service.IDataWorkService;
 
 import javax.annotation.Resource;

@@ -1,7 +1,12 @@
 package top.fairy.global.globalfairytoppi4j.beans;
 
 
-import javax.persistence.Entity;
+//import javax.persistence.Entity;
+
+import org.yaml.snakeyaml.events.Event;
+
+import javax.annotation.Generated;
+import javax.persistence.GeneratedValue;
 
 /**
  * @author jiao_zg22
@@ -9,8 +14,10 @@ import javax.persistence.Entity;
  * @description 接口
  * @date 2021/6/18 14:36
  */
-@Entity
+//@Entity
 public class DataWorkBean {
+    @GeneratedValue
+    private Integer id;
     private String speed;
     private Integer ts;
 
