@@ -12,8 +12,7 @@ import top.fairy.global.globalfairytoppi4j.utils.GpioUtil;
  *
  */  
 public interface Pi {
-    //获取树莓派gpio控制模式引脚
-    GpioController gpio = GpioUtil.getGpioController();
+
 
     /**
      *

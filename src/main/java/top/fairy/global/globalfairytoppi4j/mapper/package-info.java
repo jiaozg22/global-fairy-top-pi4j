@@ -1,0 +1,1 @@
+package top.fairy.global.globalfairytoppi4j.mapper;
