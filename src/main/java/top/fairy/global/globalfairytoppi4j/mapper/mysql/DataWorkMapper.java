@@ -1,7 +1,8 @@
-package top.fairy.global.globalfairytoppi4j.mapper.tdengine;
+package top.fairy.global.globalfairytoppi4j.mapper.mysql;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import top.fairy.global.globalfairytoppi4j.beans.DataWorkBean;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @description 数据处理
  * @date 2021/6/18 14:31
  */
-@Component
+@Mapper
 public interface DataWorkMapper {
     /**
      *

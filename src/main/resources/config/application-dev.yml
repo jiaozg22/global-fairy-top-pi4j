@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
+    username: root
+    password: global-fairy.0715
+
+#    taos:url再
+#      jdbc-url: jdbc:TAOS://192.168.0.201:6030/testdb?useSSL=false
+#      driverClassName: com.taosdata.jdbc.TSDBDriver
+#      username: root
+#      password: taosdata
+#      removeAbandoned: false
+#    mysql:
+#      jdbc-url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
+#      driverClassName: com.zaxxer.hikari.HikariDataSource
+#      username: root
+#      password: global-fairy.0715
+#      removeAbandoned: false
+#      readOnly: false
+#      connectionTimeout: 30000
+#      idleTimeout: 600000
+#      maxLifetime: 1800000
+#    jpa:
+#      hibernate:
+##        primary-dialect: org.hibernate.dialect.MySQL5Dialect
+##        secondary-dialect: org.hibernate.dialect.MySQL5Dialect
+#      dialect: org.hibernate.dialect.MySQL5Dialect
+#      open-in-view: true
+#      show-sql: true
+#      database-platform: org.hibernate.dialect.mysql
+
