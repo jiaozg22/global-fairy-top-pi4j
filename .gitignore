@@ -1,1 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
+/.idea/
+/target/
+/global-fairy-top-pi4j.iml
