@@ -2,7 +2,8 @@ package top.fairy.global.globalfairytoppi4j.service.impl;
 
 import org.springframework.stereotype.Service;
 import top.fairy.global.globalfairytoppi4j.beans.DataWorkBean;
-import top.fairy.global.globalfairytoppi4j.mapper.mysql.DataWorkMapper;
+import top.fairy.global.globalfairytoppi4j.mapper.DataWorkMapper;
+import top.fairy.global.globalfairytoppi4j.mapper.mysql.MysqlDataWorkMapper;
 import top.fairy.global.globalfairytoppi4j.service.IDataWorkService;
 
 import javax.annotation.Resource;
@@ -17,8 +18,9 @@ import javax.annotation.Resource;
 public class DataWorkServiceImpl implements IDataWorkService {
 
     @Resource
+    MysqlDataWorkMapper mysqlDataWorkMapper;
+    @Resource
     DataWorkMapper dataWorkMapper;
-
     @Override
     public boolean writeDate(DataWorkBean bean) {
         int result = dataWorkMapper.insertDataWork(bean);

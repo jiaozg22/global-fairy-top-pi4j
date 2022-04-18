@@ -2,32 +2,51 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
-    username: root
-    password: global-fairy.0715
-
-#    taos:url再
-#      jdbc-url: jdbc:TAOS://192.168.0.201:6030/testdb?useSSL=false
-#      driverClassName: com.taosdata.jdbc.TSDBDriver
-#      username: root
-#      password: taosdata
-#      removeAbandoned: false
-#    mysql:
-#      jdbc-url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
-#      driverClassName: com.zaxxer.hikari.HikariDataSource
-#      username: root
-#      password: global-fairy.0715
-#      removeAbandoned: false
-#      readOnly: false
-#      connectionTimeout: 30000
-#      idleTimeout: 600000
-#      maxLifetime: 1800000
-#    jpa:
-#      hibernate:
-##        primary-dialect: org.hibernate.dialect.MySQL5Dialect
-##        secondary-dialect: org.hibernate.dialect.MySQL5Dialect
-#      dialect: org.hibernate.dialect.MySQL5Dialect
-#      open-in-view: true
-#      show-sql: true
-#      database-platform: org.hibernate.dialect.mysql
+    dynamic:
+      #设置默认的数据源或者数据源组,默认值即为master
+      primary: mysql
+      #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      strict: false
+      datasource:
+        taos:
+  #        url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
+          jdbc-url: jdbc:TAOS://192.168.0.201:6030/testdb?useSSL=false
+          driver-class-name: com.taosdata.jdbc.TSDBDriver
+          username: root
+          password: taosdata
+          removeAbandoned: false
+        mysql:
+  #        url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
+          jdbc-url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          username: root
+          password: global-fairy.0715
+          removeAbandoned: false
+          readOnly: false
+          connectionTimeout: 30000
+          idleTimeout: 600000
+          maxLifetime: 1800000
+    hikari:
+      #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired）
+      #      max-lifetime: 60000
+      #连接池中允许的最大连接数
+      maximum-pool-size: 15
+      #<!-- 生效超时 -->
+      validation-timeout: 3000
+      #连接只读数据库时配置为true， 保证安全
+      read-only: false
+      #等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException
+      connection-timeout: 60000
+      #一个连接idle状态的最大时长（毫秒），超时则被释放（retired）
+      idle-timeout: 60000
+      # 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQLwait_timeout参数（show variables like '%timeout%';）
+      max-lifetime: 120000
+      #    jpa:
+      #      hibernate:
+      ##        primary-dialect: org.hibernate.dialect.MySQL5Dialect
+      ##        secondary-dialect: org.hibernate.dialect.MySQL5Dialect
+      #      dialect: org.hibernate.dialect.MySQL5Dialect
+      #      open-in-view: true
+      #      show-sql: true
+      #      database-platform: org.hibernate.dialect.mysql
 

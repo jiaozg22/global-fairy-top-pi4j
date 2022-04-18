@@ -2,7 +2,6 @@ package top.fairy.global.globalfairytoppi4j.mapper.mysql;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import top.fairy.global.globalfairytoppi4j.beans.DataWorkBean;
 
 import java.util.List;
@@ -10,17 +9,18 @@ import java.util.List;
 /**
  * @author jiao_zg22
  * @version 1.0
- * @description 数据处理
+ * @description 数据处理，如果是mysql数据库，并且与其他数据源的表是不同的
  * @date 2021/6/18 14:31
  */
 @Mapper
-public interface DataWorkMapper {
+public interface MysqlDataWorkMapper {
     /**
      *
      * @description:查询时序数据列表
      * @author: jiao_zg22
      * @time: 2021/6/18 14:43
      */
+
     List<DataWorkBean> findAllDataWork();
 
     /**
