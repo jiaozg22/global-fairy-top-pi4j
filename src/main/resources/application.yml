@@ -58,3 +58,6 @@ spring:
 
 logging:
   config: classpath:log4j2.xml
+sys:
+  user:
+    home: /opt/data/global-fairy-pi4j
