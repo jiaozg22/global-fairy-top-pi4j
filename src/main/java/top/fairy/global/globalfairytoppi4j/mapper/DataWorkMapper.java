@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2021/6/18 14:31
  */
 @Mapper
-@DS("tdegine")
+@DS("taos")
 public interface DataWorkMapper {
     /**
      * 未加注解，继承自类上的数据源。如果类上数据源也未加，则使用默认数据源
@@ -29,7 +29,7 @@ public interface DataWorkMapper {
      * @author: jiao_zg22
      * @time: 2021/6/18 14:44
      */
-    @DS("mysql") //方法上的数据源会覆盖类上的。
+    @DS("taos") //方法上的数据源会覆盖类上的。
     int insertDataWork(DataWorkBean dataWorkBean);
 
 //    /**

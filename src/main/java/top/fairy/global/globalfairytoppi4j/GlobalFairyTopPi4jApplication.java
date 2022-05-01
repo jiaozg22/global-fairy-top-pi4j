@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @SpringBootApplication
         (exclude = DataSourceAutoConfiguration.class)
-@ComponentScan(basePackages ={"top.fairy.global.globalfairytoppi4j" })
 @MapperScan("top.fairy.global.globalfairytoppi4j.mapper")
 @EnableTransactionManagement
 public class GlobalFairyTopPi4jApplication {

@@ -22,13 +22,13 @@ public interface TdengineDataWorkMapper {
      */
     List<DataWorkBean> findAllDataWork();
 
-    /**
-     *
-     * @description:插入时序数据
-     * @author: jiao_zg22
-     * @time: 2021/6/18 14:44
-     */
-    int insertDataWork(DataWorkBean dataWorkBean);
+//    /**
+//     *
+//     * @description:插入时序数据
+//     * @author: jiao_zg22
+//     * @time: 2021/6/18 14:44
+//     */
+//    int insertDataWork(DataWorkBean dataWorkBean);
 
 //    /**
 //     *

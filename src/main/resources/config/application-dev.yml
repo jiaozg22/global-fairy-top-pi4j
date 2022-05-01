@@ -4,13 +4,13 @@ spring:
   datasource:
     dynamic:
       #设置默认的数据源或者数据源组,默认值即为master
-      primary: mysql
+      primary: taos
       #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
-      strict: false
+      strict: true
       datasource:
         taos:
   #        url: jdbc:mysql://192.168.0.202:3306/springboot?useSSL=false
-          jdbc-url: jdbc:TAOS://192.168.0.201:6030/testdb?useSSL=false
+          jdbc-url: jdbc:TAOS//192.168.0.200:6030/testdb?useSSL=false
           driver-class-name: com.taosdata.jdbc.TSDBDriver
           username: root
           password: taosdata
@@ -41,12 +41,11 @@ spring:
       idle-timeout: 60000
       # 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQLwait_timeout参数（show variables like '%timeout%';）
       max-lifetime: 120000
-      #    jpa:
-      #      hibernate:
-      ##        primary-dialect: org.hibernate.dialect.MySQL5Dialect
-      ##        secondary-dialect: org.hibernate.dialect.MySQL5Dialect
-      #      dialect: org.hibernate.dialect.MySQL5Dialect
-      #      open-in-view: true
-      #      show-sql: true
-      #      database-platform: org.hibernate.dialect.mysql
+#      jpa:
+#        hibernate:
+##          taos-dialect: org.hibernate.dialect.？？
+#          mysql-dialect: org.hibernate.dialect.MySQL5Dialect
+#        open-in-view: true
+#        show-sql: true
+#        database-platform: org.hibernate.dialect.mysql
 
